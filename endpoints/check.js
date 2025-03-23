@@ -5,7 +5,7 @@ export default (app, api, pool) => {
     try {
       // Check if the result exists in the database
       const dbResult = await pool.query(
-        'SELECT emoji FROM operations WHERE first = $1 AND second = $2 AND result = $3',
+        'SELECT result, emoji FROM operations WHERE first = $1 AND second = $2 AND result = $3',
         [first, second, result]
       );
 

@@ -1,7 +1,8 @@
 // Imports
 import express from 'express';
 import InfiniteCraftProxy from 'ic-proxy';
-import { Pool } from 'pg';
+import pkg from 'pg';
+const { Pool } = pkg;
 import pairEndpoint from './endpoints/pair.js';
 import checkEndpoint from './endpoints/check.js';
 import dotenv from 'dotenv';

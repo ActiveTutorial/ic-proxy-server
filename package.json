@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/ActiveTutorial/ic-proxy-server#readme",
   "dependencies": {
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "ic-proxy": "github:ActiveTutorial/ic-proxy"
+    "ic-proxy": "github:ActiveTutorial/ic-proxy",
+    "pg": "^8.14.1"
   }
 }
