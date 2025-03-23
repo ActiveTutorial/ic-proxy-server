@@ -1,0 +1,26 @@
+{
+  "name": "ic-proxy-server",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Infinite Craft proxy server that protects Neals server as much as possible",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "npm install",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ActiveTutorial/ic-proxy-server.git"
+  },
+  "author": "Active Tutorial",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ActiveTutorial/ic-proxy-server/issues"
+  },
+  "homepage": "https://github.com/ActiveTutorial/ic-proxy-server#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "ic-proxy": "github:ActiveTutorial/ic-proxy"
+  }
+}
