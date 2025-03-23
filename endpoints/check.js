@@ -5,8 +5,8 @@ export default (app, api, pool) => {
     try {
       // Check if the result exists in the database
       const dbResult = await pool.query(
-        'SELECT result FROM operations WHERE type = $1 AND first = $2 AND second = $3 AND result = $4',
-        ['check', first, second, result]
+        'SELECT result FROM operations WHERE first = $1 AND second = $2 AND result = $3 AND valid IS NOT NULL',
+        [first, second, result]
       );
 
       if (dbResult.rows.length > 0) {
@@ -18,8 +18,8 @@ export default (app, api, pool) => {
 
       // Store the result in the database
       await pool.query(
-        'INSERT INTO operations (type, first, second, result, valid) VALUES ($1, $2, $3, $4, $5)',
-        ['check', first, second, result, checkResult.valid]
+        'INSERT INTO operations (first, second, result, valid) VALUES ($1, $2, $3, $4)',
+        [first, second, result, checkResult.valid]
       );
 
       res.json(checkResult);
