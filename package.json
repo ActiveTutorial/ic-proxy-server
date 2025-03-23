@@ -1,6 +1,6 @@
 {
   "name": "ic-proxy-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "Infinite Craft proxy server that protects Neals server as much as possible",
   "main": "index.js",
