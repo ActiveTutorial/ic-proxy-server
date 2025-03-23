@@ -4,11 +4,9 @@
   "type": "module",
   "description": "Infinite Craft proxy server that protects Neals server as much as possible",
   "main": "index.js",
-  "scripts": {
-    "preinstall": "apt-get update && apt-get install -y google-chrome-stable",
-    "postinstall": "npx puppeteer browsers install chrome",  
+  "scripts": { 
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "npm i",
+    "prestart": "npm i && npx puppeteer install chrome",
     "start": "node index.js"
   },
   "repository": {
