@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "npm install",
+    "prestart": "npm i",
     "start": "node index.js"
   },
   "repository": {

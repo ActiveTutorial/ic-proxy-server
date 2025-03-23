@@ -31,7 +31,7 @@ const pool = new Pool({
   checkEndpoint(app, api, pool);
 
   // Start server
-  app.listen(port, '0.0.0.0', () => {
+  app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
   });
 
