@@ -5,24 +5,32 @@ export default (app, api, pool) => {
     try {
       // Check if the result exists in the database
       const dbResult = await pool.query(
-        'SELECT result FROM operations WHERE first = $1 AND second = $2 AND result = $3 AND valid IS NOT NULL',
+        'SELECT emoji FROM operations WHERE first = $1 AND second = $2 AND result = $3',
         [first, second, result]
       );
 
       if (dbResult.rows.length > 0) {
-        return res.json({ valid: true });
+        const dbResultRow = dbResult.rows[0];
+        if (dbResultRow.result === result) {
+          return res.json({ valid: true, emoji: dbResultRow.emoji });
+        } else {
+          return res.json({ valid: false, emoji: "" });
+        }
       }
 
       // If not in the database, use the API
       const checkResult = await api.check(first, second, result);
 
-      // Store the result in the database
-      await pool.query(
-        'INSERT INTO operations (first, second, result, valid) VALUES ($1, $2, $3, $4)',
-        [first, second, result, checkResult.valid]
-      );
-
       res.json(checkResult);
+
+      if (checkResult.valid) {
+        // Store the result in the database
+        await pool.query(
+          'INSERT INTO operations (first, second, result, emoji) VALUES ($1, $2, $3, $4)',
+          [first, second, result, checkResult.emoji]
+        );
+      }
+
     } catch (error) {
       res.status(500).json({ error: error.message });
     }

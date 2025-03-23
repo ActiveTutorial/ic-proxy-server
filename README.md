@@ -6,8 +6,6 @@ Infinite Craft proxy server that protects Neal's server as much as possible.
 
 - Proxy server for Infinite Craft API.
 - Caches results in a PostgreSQL database to reduce API usage.
-- Environment variables for secure configuration.
-- Modular endpoint structure for better maintainability.
 
 ## Setup
 
@@ -25,20 +23,15 @@ Infinite Craft proxy server that protects Neal's server as much as possible.
    cd ic-proxy-server
    ```
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Set up the PostgreSQL database:
+2. Set up the PostgreSQL database:
    - Create a database and user.
    - Run the SQL script to set up the schema:
      ```bash
      psql -U <your_db_user> -d <your_db_name> -f db/schema.sql
      ```
 
-4. Create a `.env` file in the root directory with the following content:
-   ```properties
+4. Set up enviroment variables:
+   ```env
    DB_USER=your_db_user
    DB_HOST=localhost
    DB_NAME=your_db_name
@@ -64,7 +57,7 @@ Infinite Craft proxy server that protects Neal's server as much as possible.
   - Returns the pairing result as JSON.
 - **Example**:
   ```bash
-  curl "http://localhost:3000/pair?first=value1&second=value2"
+  curl "http://localhost:3000/pair?first=Water&second=Water"
   ```
 
 #### `/check`
@@ -79,25 +72,5 @@ Infinite Craft proxy server that protects Neal's server as much as possible.
   - Returns a JSON object indicating whether the result is valid.
 - **Example**:
   ```bash
-  curl "http://localhost:3000/check?first=value1&second=value2&result=value3"
+  curl "http://localhost:3000/check?first=Water&second=Water&result=Lake"
   ```
-
-### Project Structure
-
-```
-ic-proxy-server/
-├── db/
-│   └── schema.sql         # Database schema
-├── endpoints/
-│   ├── pair.js            # /pair endpoint logic
-│   └── check.js           # /check endpoint logic
-├── .env                   # Environment variables (not committed to version control)
-├── index.js               # Main server file
-├── package.json           # Project metadata and dependencies
-└── README.md              # Project documentation
-```
-
-### Notes
-
-- Ensure the `.env` file is added to `.gitignore` to prevent sensitive information from being committed.
-- The `operations` table is used to store both `/pair` and `/check` results, with a `type` column to differentiate between them.
